@@ -25,8 +25,11 @@ const DefaultPage : React.FC<DefaultProps> = ( { setSuccess} ) => {
     event.preventDefault();
 
     const form = event.target as HTMLFormElement;
+    const emailInput = form.querySelector("input[type='email']") as HTMLInputElement;
 
-    if(form.reportValidity()) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+
+    if(emailRegex.test(emailInput.value) && form.reportValidity()) {
       setIsValid(true);
       setSuccess(false);
       console.log("Form Submitted");
@@ -121,7 +124,7 @@ const DefaultPage : React.FC<DefaultProps> = ( { setSuccess} ) => {
             </TextPreset2Bold>
           </EmailContainer>
 
-          {!email ? <Button bgcolor="blue-800">Subscribe to monthly newsletter</Button> : <Button bgcolor="gradient-4">Subscribe to monthly newsletter</Button> }
+          {!email ? <Button>Subscribe to monthly newsletter</Button> : <Button>Subscribe to monthly newsletter</Button> }
         </EmailBox>
       </Content>
     </PageContainer>
@@ -231,6 +234,7 @@ const EmailInput = styled.input<{ isValid: boolean, color?: keyof DefaultTheme["
 
   background-color: ${ (props) => props.isValid ? props.theme.colors["white"] : props.theme.colors["fade-red"]};
 
+
   outline: none;
 
   &:invalid {
@@ -245,6 +249,6 @@ const EmailInput = styled.input<{ isValid: boolean, color?: keyof DefaultTheme["
   }
 
   &::placeholder {
-    color: ${(props) => props.theme.colors["grey"]};
+    color: ${(props) => props.theme.colors["grey"]};  
   }
 `;

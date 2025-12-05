@@ -7,10 +7,10 @@ import {
 import Tick from "../assets/images/icon-success.svg";
 
 interface SuccessProps {
-    setSuccess : React.Dispatch<React.SetStateAction<boolean>>;
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SuccessPage: React.FC<SuccessProps> = ( { setSuccess }) => {
+const SuccessPage: React.FC<SuccessProps> = ({ setSuccess }) => {
   return (
     <Success>
       <Content>
@@ -22,7 +22,11 @@ const SuccessPage: React.FC<SuccessProps> = ( { setSuccess }) => {
           subscription
         </TextPreset2Regular>
       </Content>
-      <Button bgcolor="blue-800" onClick = { () => { setSuccess(true) }}>
+      <Button
+        onClick={() => {
+          setSuccess(true);
+        }}
+      >
         Dismiss Message
       </Button>
     </Success>
@@ -49,10 +53,8 @@ const Success = styled.aside`
     justify-content: unset;
   }
 
-  
   @media (min-width: 1024px) {
     width: 504px;
-
   }
 `;
 
